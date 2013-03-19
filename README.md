@@ -12,4 +12,10 @@ A jQuery plugin for creating responsive slideshows that work everywhere.
 5. Swipeable for touch devices.
 6. Go fullscreen
 
+## TODOs
 
+[ ] Research existing options
+[ ] Define HTML structure
+[ ] Add simple CSS
+[ ] Build "Mobile First" js version
+[ ] Modify mobile first version for larger screen sizes
