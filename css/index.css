@@ -1,0 +1,15 @@
+body {
+    font: 100% Helvetica, sans-serif;
+}
+/* Provide some simple styles for non-js environments where slideshow will be displayed as an ordered list */
+.no-js.slideshow ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.no-js.slideshow ol li {
+    margin: 2em 0;
+}
+.no-js.slideshow ol li img {
+    width: 100%;
+}

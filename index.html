@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+    <title>WaterslideJS</title>
+    <meta name="viewport" content="initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/waterslide.css" />
+</head>
+<body>
+    <h1>Waterslide Example</h1>
+    <div class="slideshow no-js">
+        <ol>
+            <li id="slide1">
+                <div class="image"><img src="./img/1.jpg"/></div>
+                <div class="caption">This is a caption for slide 1.</div>
+                <div class="credit">Photo credit: Annie L</div>
+            </li>
+            <li id="slide2">
+                <div class="image"><img src="./img/2.jpg"/></div>
+                <div class="caption">Slide 2 has a <a href="#">hyperlink</a>.</div>
+                <div class="credit">Photo credit: Mark S</div>
+            </li>
+            <li id="slide3">
+                <div class="image"><img src="./img/3.jpg"/></div>
+                <div class="caption">Slide 3 has a br tag<br />(which is prolly a bad idea).</div>
+                <div class="credit">Photo credit: Benny H</div>
+            </li>
+        </ol>
+    </div>
+    <script src="./js/jquery-1.9.1.min.js"></script>
+    <script src="./js/waterslide.js"></script>
+    <script>
+        $('.slideshow').waterslide();
+    </script>
+</body>
+</html>

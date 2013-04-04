@@ -1,0 +1,32 @@
+.waterslide {
+    position: relative;
+}
+.waterslide ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.waterslide ol li {
+    display: none;
+}
+.waterslide ol li img {
+    width: 100%;
+}
+.waterslide .controls {
+    background-color: rgba(0,0,0,.25);
+    bottom:0;
+    position: absolute;
+    text-indent: -10000px;
+    top: 0;
+    width: 2em;
+}
+.waterslide .controls.prev {
+    left: 0;
+}
+.waterslide .controls.next {
+    right: 0;
+}
+.waterslide .caption,
+.waterslide .credit {
+    text-align: center;
+}
