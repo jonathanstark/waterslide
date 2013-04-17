@@ -1,13 +1,13 @@
 (function($){
     $.fn.waterslide = function(options){
         var foo
-        ,   curr
-        ,   defaults
-        ,   next
-        ,   prev
-        ,   settings
-        ,   slides
-        ,   target
+        , curr
+        , defaults
+        , next
+        , prev
+        , settings
+        , slides
+        , target
         ;
 
         // Define sensible defaults
@@ -39,12 +39,35 @@
 
         // Init vars
         curr = settings.initialSlideNumber-1;
-        prev = (curr == 0) ? slides.length-1 : curr-1;
-        next = (curr == slides.length-1) ? 0 : curr+1;
 
         // Add controls
         target.append('<a class="controls prev" href="#">Prev</a>');
         target.append('<a class="controls next" href="#">Next</a>');
+
+        // Attach listener
+        target.find('a.next').on('click', nextSlide);
+        target.find('a.prev').on('click', prevSlide);
+
+        function nextSlide(e) {
+            e.preventDefault();
+            var next = (curr == slides.length-1) ? 0 : curr+1;
+            goToSlide(next);
+        }
+
+        function prevSlide(e) {
+            e.preventDefault();
+            var prev = (curr == 0) ? slides.length-1 : curr-1;
+            goToSlide(prev, 'back');
+        }
+
+        function goToSlide(slideNumber, direction) {
+            var direction = direction || 'forward';
+            curr = slideNumber;
+            prev = (curr == 0) ? slides.length-1 : curr-1;
+            next = (curr == slides.length-1) ? 0 : curr+1;
+            $(slides).hide();    
+            $(slides[curr]).show();    
+        }
 
         // Show first slide
         $(slides[curr]).show();
