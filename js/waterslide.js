@@ -1,19 +1,20 @@
 (function($){
     $.fn.waterslide = function(options){
         var foo
-        , curr
-        , defaults
-        , next
-        , prev
-        , settings
-        , slides
-        , target
+            , curr
+            , defaults
+            , images
+            , next
+            , prev
+            , settings
+            , slides
+            , target
         ;
 
         // Define sensible defaults
         defaults = {
-            noJsClass: 'no-js', 
-            yesJsClass: 'yes-js', 
+            noJsClass: 'no-js',
+            yesJsClass: 'yes-js',
             initialSlideNumber: 1
         };
 
@@ -23,54 +24,106 @@
         // Store a reference to the jQuery object that this function was called on
         target = this;
 
-        // Cache a reference to the slides
-        slides = target.find('li');
-
         // Remove css rules for non-javascript environment fallbacks (progressive enhancement FTW!)
         target.removeClass(settings.noJsClass);
 
-        // TODO: Check for waterslide class in HTML source
+        // Cache a reference to the slides
+        slides = target.find('li');
+
+        // Cache a reference to the images
+        images = target.find('.image img');
 
         // Apply css rules required for plugin operation
         target.addClass('waterslide');
 
-        // Apply user defined css rules
+        // Apply any user defined css rules
         target.addClass(settings.yesJsClass);
 
-        // Init vars
-        curr = settings.initialSlideNumber-1;
+        // Set background images on LIs
+        for (var i = 0, max = images.length; i < max; i++) {
+            var slide = slides[i];
+            var image = images[i];
+            $(slide).css('background-image', 'url('+image.src+')');
+        }
+
+        // Add thumbnails
+        var html = '<div class="thumbnails">';
+        for (var i = 0, max = images.length; i < max; i++) {
+            var image = images[i];
+            html+='<a class="thumbnail" data-index='+i+' href="#"><img src="'+image.src+'" /></a>';
+        }
+        html+='</div>';
+        target.append(html);
+
+        // Cache a reference to the thumbnails
+        thumbnails = target.find('.thumbnails a');
 
         // Add controls
-        target.append('<a class="controls prev" href="#">Prev</a>');
-        target.append('<a class="controls next" href="#">Next</a>');
+        target.append('<div class="controls"><a class="prev" href="#">Previous</a><a class="next" href="#">Next</a><a class="exit" href="#">Exit</a></div>');
 
-        // Attach listener
-        target.find('a.next').on('click', nextSlide);
-        target.find('a.prev').on('click', prevSlide);
+        // Attach listeners
+        target.find('li').on('click', handleSlideClick);
+        target.find('a.exit').on('click', handleExitClick);
+        target.find('a.next').on('click', goToNextSlide);
+        target.find('a.prev').on('click', goToPreviousSlide);
+        target.find('a.thumbnail').on('click', handleThumbnailClick);
 
-        function nextSlide(e) {
+        // Show first slide
+        goToSlide(0);
+
+        // FUNCTIONS
+
+        function goToNextSlide(e) {
             e.preventDefault();
             var next = (curr == slides.length-1) ? 0 : curr+1;
             goToSlide(next);
         }
 
-        function prevSlide(e) {
+        function goToPreviousSlide(e) {
             e.preventDefault();
             var prev = (curr == 0) ? slides.length-1 : curr-1;
             goToSlide(prev, 'back');
         }
 
-        function goToSlide(slideNumber, direction) {
+        function goToSlide(slideIndex, direction) {
             var direction = direction || 'forward';
-            curr = slideNumber;
+            curr = slideIndex;
             prev = (curr == 0) ? slides.length-1 : curr-1;
             next = (curr == slides.length-1) ? 0 : curr+1;
-            $(slides).hide();    
-            $(slides[curr]).show();    
+
+            // Reset active classes
+            target.find('.active').removeClass('active');
+
+            // Set active classes
+            $(slides[curr]).addClass('active');
+            $(thumbnails[curr]).addClass('active');
         }
 
-        // Show first slide
-        $(slides[curr]).show();
+        function handleExitClick(e) {
+            e.preventDefault();
+            target.removeClass('fullscreen hide-chrome');
+        }
+
+        function handleSlideClick(e) {
+            e.preventDefault();
+            if (target.hasClass('fullscreen')) {
+                target.toggleClass('hide-chrome');
+            } else {
+                target.addClass('fullscreen');
+            }
+        }
+
+        function handleThumbnailClick(e) {
+            e.preventDefault();
+            targetIndex = $(this).data('index');
+            if (targetIndex != curr) {
+                if (targetIndex > curr) {
+                    goToSlide(targetIndex);
+                } else {
+                    goToSlide(targetIndex, 'back');
+                }
+            }
+        }
 
     }
 }(jQuery));

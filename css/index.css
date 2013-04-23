@@ -1,4 +1,5 @@
 body {
+    background: #ccc;
     font: 100% Helvetica, sans-serif;
 }
 /* Provide some simple styles for non-js environments where slideshow will be displayed as an ordered list */

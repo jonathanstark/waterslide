@@ -1,5 +1,13 @@
+/* DEFAULT STATE (NOT FULLSCREEN) */
+
 .waterslide {
     position: relative;
+}
+.waterslide .caption,
+.waterslide .controls,
+.waterslide .credit,
+.waterslide .thumbnails {
+    display: none;
 }
 .waterslide ol {
     list-style: none;
@@ -9,24 +17,95 @@
 .waterslide ol li {
     display: none;
 }
-.waterslide ol li img {
+.waterslide ol li.active {
+    display: block;
+}
+.waterslide ol li.active img {
+    display: block;
     width: 100%;
 }
-.waterslide .controls {
-    background-color: rgba(0,0,0,.25);
-    bottom:0;
-    position: absolute;
-    text-indent: -10000px;
-    top: 0;
-    width: 2em;
-}
-.waterslide .controls.prev {
+
+/* FULLSCREEN STUFF */
+
+.waterslide.fullscreen li {
+    background-color: black;
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
+    bottom: 0;
     left: 0;
-}
-.waterslide .controls.next {
+    position: fixed;
     right: 0;
+    top: 0;
 }
-.waterslide .caption,
-.waterslide .credit {
+.waterslide.fullscreen li .image {
+    display: none;
+}
+.waterslide.fullscreen .caption,
+.waterslide.fullscreen .controls,
+.waterslide.fullscreen .thumbnails {
+    -webkit-transition: all 1s;
+    background-color: rgba(0,0,0,.5);
+    display: block;
+    padding: .5em;
+    position: fixed;
+}
+.waterslide.fullscreen .caption {
+    bottom: 100px;
+    color: white;
+    font-style: italic;
+}
+.waterslide.fullscreen .controls {
+    top: 0;
     text-align: center;
+    width: 100%;
+}
+.waterslide.fullscreen .controls > a {
+    background-color: #333;
+    display: inline-block;
+    height: 40px;
+    margin: 0 .65em 0 0;
+    text-align: left;
+    text-indent: -10000px;
+    width: 40px;
+}
+.waterslide.fullscreen .controls .prev {
+    background-image: url(./img/prev.png);
+}
+.waterslide.fullscreen .controls .next {
+    background-image: url(./img/next.png);
+}
+.waterslide.fullscreen .controls .exit {
+    background-image: url(./img/exit-fullscreen.png);
+    position: absolute;
+    right: 1em;
+}
+.waterslide.fullscreen .thumbnails {
+    bottom: 0;
+    margin-top: 1em;
+    overflow: scroll;
+    white-space: nowrap;
+    width: 100%;
+}
+.waterslide.fullscreen .thumbnails a {
+    display: inline-block;
+    height: 60px;
+    margin-right: .25em;
+    padding: 7px;
+}
+.waterslide.fullscreen .thumbnails a.active {
+    background-color: green;
+}
+.waterslide.fullscreen .thumbnails a img {
+    border: 1px solid #aaa;
+    display: block;
+    height: 60px;
+}
+.waterslide.fullscreen.hide-chrome .caption,
+.waterslide.fullscreen.hide-chrome .controls,
+.waterslide.fullscreen.hide-chrome .thumbnails {
+    opacity: 0;
 }
