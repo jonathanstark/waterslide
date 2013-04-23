@@ -62,11 +62,11 @@
         target.append('<div class="controls"><a class="prev" href="#">Previous</a><a class="next" href="#">Next</a><a class="exit" href="#">Exit</a></div>');
 
         // Attach listeners
-        target.find('li').on('click', handleSlideClick);
         target.find('a.exit').on('click', handleExitClick);
         target.find('a.next').on('click', goToNextSlide);
         target.find('a.prev').on('click', goToPreviousSlide);
         target.find('a.thumbnail').on('click', handleThumbnailClick);
+        target.find('li').on('click', handleSlideClick);
 
         // Show first slide
         goToSlide(0);
@@ -91,10 +91,8 @@
             prev = (curr == 0) ? slides.length-1 : curr-1;
             next = (curr == slides.length-1) ? 0 : curr+1;
 
-            // Reset active classes
+            // Set/unset active classes
             target.find('.active').removeClass('active');
-
-            // Set active classes
             $(slides[curr]).addClass('active');
             $(thumbnails[curr]).addClass('active');
         }
