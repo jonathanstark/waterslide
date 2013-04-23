@@ -15,7 +15,7 @@ A jQuery plugin for creating responsive slideshows that work everywhere.
 ## TODOs
 
 - [x] Research existing options
-- [ ] Define HTML structure
-- [ ] Add simple CSS
+- [x] Define HTML structure
+- [x] Add simple CSS
 - [ ] Build "Mobile First" js version
 - [ ] Modify mobile first version for larger screen sizes
