@@ -46,6 +46,9 @@
             $(slide).css('background-image', 'url('+image.src+')');
         }
 
+        // Add controls
+        target.append('<div class="controls"><a class="prev" href="#">Previous</a><a class="next" href="#">Next</a><a class="exit" href="#">Exit</a></div>');
+
         // Add thumbnails
         var html = '<div class="thumbnails">';
         for (var i = 0, max = images.length; i < max; i++) {
@@ -58,9 +61,6 @@
 
         // Cache a reference to the thumbnails
         thumbnails = target.find('.thumbnails a');
-
-        // Add controls
-        target.append('<div class="controls"><a class="prev" href="#">Previous</a><a class="next" href="#">Next</a><a class="exit" href="#">Exit</a></div>');
 
         // Attach listeners
         target.find('a.exit').on('click', handleExitClick);

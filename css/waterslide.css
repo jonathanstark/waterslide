@@ -64,6 +64,10 @@
     text-align: center;
     width: 100%;
 }
+.waterslide.fullscreen a:focus,
+.waterslide.fullscreen a:active {
+    outline: 3px solid green;
+}
 .waterslide.fullscreen .controls > a {
     background-color: #333;
     display: inline-block;
