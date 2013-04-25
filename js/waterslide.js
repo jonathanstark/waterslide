@@ -50,7 +50,8 @@
         var html = '<div class="thumbnails">';
         for (var i = 0, max = images.length; i < max; i++) {
             var image = images[i];
-            html+='<a class="thumbnail" data-index='+i+' href="#"><img src="'+image.src+'" /></a>';
+            var src = ($(image).data('thumb')) ? $(image).data('thumb') : image.src;
+            html+='<a class="thumbnail" data-index='+i+' href="#"><img src="'+src+'" /></a>';
         }
         html+='</div>';
         target.append(html);

@@ -50,15 +50,16 @@
     -webkit-transition: all 1s;
     background-color: rgba(0,0,0,.5);
     display: block;
-    padding: .5em;
     position: fixed;
 }
 .waterslide.fullscreen .caption {
     bottom: 100px;
     color: white;
     font-style: italic;
+    padding: .5em;
 }
 .waterslide.fullscreen .controls {
+    padding: .5em;
     top: 0;
     text-align: center;
     width: 100%;
@@ -85,10 +86,12 @@
 }
 .waterslide.fullscreen .thumbnails {
     bottom: 0;
+    left: 0;
     margin-top: 1em;
     overflow: scroll;
+    padding: .5em;
+    right: 0;
     white-space: nowrap;
-    width: 100%;
 }
 .waterslide.fullscreen .thumbnails a {
     display: inline-block;
